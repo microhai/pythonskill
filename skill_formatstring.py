@@ -1,6 +1,10 @@
+#   string formatting with  %
+#   %[+,-][0][w][.n][type]
+
+
 print('%s buys %d apples' % ('Mike', 5))
 
-# %[+,-][0][w][.n][type]
+
 
 #str
 print('%s' % ('hello'))
