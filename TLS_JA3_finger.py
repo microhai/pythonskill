@@ -99,6 +99,7 @@ s = requests.Session()
 s.headers.update(headers)
  
 for _ in range(5):
+    # s.mount('https://', DESAdapter()) #all
     s.mount('https://tls.browserleaks.com', DESAdapter())
     resp = s.get('https://tls.browserleaks.com/json').json()
     print(resp)
