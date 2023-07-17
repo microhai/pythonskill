@@ -22,8 +22,6 @@ header = {
 }
 caps = DesiredCapabilities.CHROME
 q = Queue(maxsize=0)
-nowid = ''
-nowbusno = ''
 
 
 def get_body(log, driver):
@@ -121,7 +119,6 @@ if __name__ == '__main__':
     driver.get("https://www.baidu.com/")
     print(driver.page_source)
 
-    print("--------------------------------------------------------------------------------")
     while True:
         if q.qsize() == 0:
             break
@@ -131,8 +128,6 @@ if __name__ == '__main__':
             driver.get("https://www.baidu.com/")
             print(driver.page_source)
         
-        if len(nowbusno) != 18:
-            continue
         url = 'https://www.baidu.com'
         driver.get(url)
         time.sleep(random.randrange(1, 3))
