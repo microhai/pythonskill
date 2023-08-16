@@ -5,6 +5,9 @@ import random
 import os
 from queue import Queue, LifoQueue, PriorityQueue
 from selenium import webdriver
+from selenium.webdriver.common.by import By
+from selenium.webdriver.support import expected_conditions
+from selenium.webdriver.common.action_chains import ActionChains
 # from seleniumwire import webdriver 
 from selenium.webdriver.common.desired_capabilities import DesiredCapabilities
 from time import sleep
@@ -22,6 +25,25 @@ header = {
 }
 caps = DesiredCapabilities.CHROME
 q = Queue(maxsize=0)
+
+#控制已经打开的可以通过
+#chrome_options.add_experimental_option("debuggerAddress", "127.0.0.1:8888")
+
+#浏览器快捷方式 目标 添加
+# chrome.exe --remote-debugging-port=8888 --user-data-dir=remote-profile.
+#防止配置污染可以通过 remote-profile来设置路径已经 D:\chrometest
+
+
+#baidu search 
+#elexPath like: "/html/body/div[2]/div[2]/div[5]/div[1]/div/form/span[2]"
+
+def WebPageControl(elexPath, driver, inputText):
+    by = By.XPATH
+    el = driver.find_element(by, elexPath)# element full xpath
+    actions = ActionChains(driver)
+    actions.move_to_element(el).click().perform() # element click
+    if inputText != '':
+        el.send_keys(inputText) # if textarea to set text
 
 
 def get_body(log, driver):
